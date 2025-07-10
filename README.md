@@ -4,6 +4,9 @@
 [![MCP](https://img.shields.io/badge/MCP-ModelContextProtocol-blueviolet)](https://modelcontextprotocol.io/)
 [![uv](https://img.shields.io/badge/uv-fast%20Python%20installer-brightgreen)](https://astral.sh/uv/)
 
+![MCP Client Start](./media/screen_start.png)
+![MCP Client Tools](./media/screen_tool_use.png)
+
 This is a sample [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server built with Python, demonstrating how to expose tools and resources to LLMs and MCP clients. It also includes a sample MCP client that integrates with Google Gemini.
 
 ## Features

@@ -173,7 +173,8 @@ class MCP_CLIENT:
 
 async def main():
     mcp_client = MCP_CLIENT()
-    server_path = input("Enter the path to the server script: ")
+    # server_path = input("Enter the path to the server script: ")
+    server_path = "mcp_server.py"
     try:
         await mcp_client.connect_mcp_server(server_path)
         await mcp_client.chat_loop()
