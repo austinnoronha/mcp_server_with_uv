@@ -1,10 +1,11 @@
 import random
-from typing import Any
+
 from mcp.server.fastmcp import FastMCP
 from mcp.server.fastmcp.prompts import base
 
 # Initialize FastMCP server
 mcp = FastMCP("cricket_prediction")
+
 
 @mcp.tool()
 async def predict_winner(team1: str, team2: str) -> str:
@@ -17,6 +18,7 @@ async def predict_winner(team1: str, team2: str) -> str:
     # Mock logic: just pick the first team for now
     winner = random.choice([team1, team2])
     return f"Predicted winner: {winner} (mock prediction)"
+
 
 @mcp.tool()
 async def get_player_stats(player_name: str) -> str:
@@ -31,8 +33,9 @@ async def get_player_stats(player_name: str) -> str:
     leader = ""
     if runs > 1000 or wickets > 50:
         leader = "Top of the leader board!"
-    
+
     return f"Stats for {player_name}: {runs} runs, 50 {wickets} (mock data). {leader}"
+
 
 @mcp.resource("teamstats://")
 def match_data_csv() -> str:
@@ -51,8 +54,11 @@ def team_code(team: str) -> str:
     return [
         base.UserMessage("Review Team:"),
         base.UserMessage(team),
-        base.AssistantMessage("Review the last 10 matches of this team and provide information about - best bowlers, best batsmen, best all rounder.")
-    ]    
-    
+        base.AssistantMessage(
+            "Review the last 10 matches of this team and provide information about - best bowlers, best batsmen, best all rounder."
+        ),
+    ]
+
+
 if __name__ == "__main__":
-    mcp.run(transport='stdio') 
+    mcp.run(transport="stdio")

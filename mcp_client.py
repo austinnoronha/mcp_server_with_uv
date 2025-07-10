@@ -1,11 +1,11 @@
-from dotenv import load_dotenv
+import os
 from contextlib import AsyncExitStack
 from typing import Optional
+
+from dotenv import load_dotenv
+from gemini_tool_agent.agent import Agent
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
-from gemini_tool_agent.agent import Agent
-import os
-import sys
 
 load_dotenv()
 
@@ -58,7 +58,7 @@ class MCP_CLIENT:
 
     async def get_response(self, input: str):
         try:
-            
+
             response = self.agent.process_query(input)
             self.agent.history.append({"role": "user", "content": input})
 
@@ -99,7 +99,8 @@ class MCP_CLIENT:
                     if len(self.agent.history) >= 5
                     else self.agent.history
                 )
-                response_text = self.agent.generate_response(f"""
+                response_text = self.agent.generate_response(
+                    f"""
                 You are a helpful assistant responding to the following query:
                 QUERY: {input}
                 
@@ -107,7 +108,8 @@ class MCP_CLIENT:
                 
                 Please provide accurate response that considers the conversation history and response from the.
                 If you are not able to genetate a response then mention that this is the limit to the response based on MCP server.
-                """)
+                """
+                )
                 self.agent.history.append(
                     {"role": "assistant", "content": response_text}
                 )
