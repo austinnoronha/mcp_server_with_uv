@@ -4,13 +4,14 @@
 [![MCP](https://img.shields.io/badge/MCP-ModelContextProtocol-blueviolet)](https://modelcontextprotocol.io/)
 [![uv](https://img.shields.io/badge/uv-fast%20Python%20installer-brightgreen)](https://astral.sh/uv/)
 
-This is a sample [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server built with Python, demonstrating how to expose tools and resources to LLMs and MCP clients.
+This is a sample [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server built with Python, demonstrating how to expose tools and resources to LLMs and MCP clients. It also includes a sample MCP client that integrates with Google Gemini.
 
 ## Features
 
 - **Predict Winner Tool**: Predicts the winner between two cricket teams (mock logic).
 - **Get Player Stats Tool**: Returns mock stats for a cricket player.
 - **Match Data CSV Resource**: Exposes mock cricket match data as a CSV resource, with support for sampling rows.
+- **MCP Client**: Example client using MCP and Google Gemini (API key required).
 
 ## Setup
 
@@ -23,10 +24,25 @@ This is a sample [Model Context Protocol (MCP)](https://modelcontextprotocol.io/
    uv venv
    uv add "mcp[cli]" httpx
    ```
-3. **Run the server:**
-   ```sh
-   uv run mcp dev main.py
-   ```
+3. **Set up your Google Gemini API key:**
+   - Create a `.env` file in the project root with the following content:
+     ```env
+     GEMINI_KEY=your-gemini-api-key-here
+     ```
+
+## Running the Server
+
+Run the MCP server (now named `mcp_server.py`):
+```sh
+uv run mcp dev mcp_server.py
+```
+
+## Running the Client
+
+Run the MCP client (requires `.env` with Gemini API key):
+```sh
+uv run python mcp_client.py
+```
 
 ## Usage
 
