@@ -1,7 +1,7 @@
 [project]
 name = "mcp-server-with-uv"
 version = "0.1.0"
-description = "Add your description here"
+description = "This is a sample Model Context Protocol (MCP) server built with Python, demonstrating how to expose tools and resources to LLMs and MCP clients."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

@@ -4,8 +4,6 @@
 [![MCP](https://img.shields.io/badge/MCP-ModelContextProtocol-blueviolet)](https://modelcontextprotocol.io/)
 [![uv](https://img.shields.io/badge/uv-fast%20Python%20installer-brightgreen)](https://astral.sh/uv/)
 
-This a simple MCP server shwocasing how to use tools, resource and prompts with mcp and uv ( package manager )
-
 This is a sample [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server built with Python, demonstrating how to expose tools and resources to LLMs and MCP clients.
 
 ## Features
