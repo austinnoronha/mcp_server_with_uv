@@ -40,7 +40,7 @@ async def get_player_stats(player_name: str) -> str:
 
 @mcp.tool()
 async def get_indian_captian_information(player_name: str) -> str:
-    """Get an Indian Cricket Captian Information.
+    """Get Information about an Indian Cricket Captian.
 
     Args:
         player_name: Name of the player
@@ -127,11 +127,9 @@ async def get_indian_captian_information(player_name: str) -> str:
             break
 
     if leader is not None:
-        return f"Information about the indian captian {leader['name']}: {leader['trophies_won']} trophies, between {leader['years_range']} and {'has retired' if leader['has_retired'] else 'has not retired'}"
+        return f"Information about the Indian Cricket Captian {leader['name']}: {leader['trophies_won']} trophies, between {leader['years_range']} and {'has retired' if leader['has_retired'] else 'has not retired'}"
     else:
-        return (
-            f"There is no information avaliable for {player_name} as an Indian Captian!"
-        )
+        return f"There is no information avaliable for {player_name} as an Indian Cricket Captian!"
 
 
 @mcp.resource("teamstats://")
