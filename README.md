@@ -22,13 +22,26 @@ This is a sample [Model Context Protocol (MCP)](https://modelcontextprotocol.io/
 2. **Install dependencies:**
    ```sh
    uv venv
-   uv add "mcp[cli]" httpx
+   uv add "mcp[cli]" httpx pre-commit
    ```
 3. **Set up your Google Gemini API key:**
    - Create a `.env` file in the project root with the following content:
      ```env
      GEMINI_KEY=your-gemini-api-key-here
      ```
+
+## Pre-commit Hooks
+
+Set up pre-commit hooks to ensure code quality:
+
+1. **Install pre-commit hooks:**
+   ```sh
+   uv run pre-commit install
+   ```
+2. **Run all pre-commit hooks manually:**
+   ```sh
+   uv run pre-commit run --all
+   ```
 
 ## Running the Server
 
