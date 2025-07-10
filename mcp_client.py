@@ -6,10 +6,31 @@ from dotenv import load_dotenv
 from gemini_tool_agent.agent import Agent
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
+from rich.console import Console
 
 load_dotenv()
 
 api_key = os.environ.get("GEMINI_KEY")
+
+console = Console()
+
+ascii_banner = r"""
+   _____              _                      _  __           _       
+  / ____|            (_)                    | |/ /          | |      
+ | |     _   _  _ __  _   ___   _   _  ___  | ' /  ___    __| |  ___ 
+ | |    | | | || '__|| | / _ \ | | | |/ __| |  <  / _ \  / _` | / _ \
+ | |____| |_| || |   | || (_) || |_| |\__ \ | . \| (_) || (_| ||  __/
+  \_____|\__,_||_|   |_| \___/  \__,_||___/ |_|\_\\___/  \__,_| \___|
+                                                                     
+                                                                     
+"""
+
+console.print("MCP Client Example", style="bold green")
+console.print(ascii_banner, style="bold magenta")
+console.print("Lets start with one step at a time ⌚", style="bold green")
+console.print("")
+console.print("-----------------------------------------------")
+console.print("")
 
 
 class MCP_CLIENT:
