@@ -1,4 +1,5 @@
 import random
+import re
 
 from mcp.server.fastmcp import FastMCP
 from mcp.server.fastmcp.prompts import base
@@ -35,6 +36,102 @@ async def get_player_stats(player_name: str) -> str:
         leader = "Top of the leader board!"
 
     return f"Stats for {player_name}: {runs} runs, 50 {wickets} (mock data). {leader}"
+
+
+@mcp.tool()
+async def get_indian_captian_information(player_name: str) -> str:
+    """Get an Indian Cricket Captian Information.
+
+    Args:
+        player_name: Name of the player
+    """
+    indian_captains = [
+        {
+            "name": "MS Dhoni",
+            "trophies_won": 8,
+            "years_as_captain": 9,
+            "years_range": "2007–2016",
+            "has_retired": True,
+        },
+        {
+            "name": "Virat Kohli",
+            "trophies_won": 5,
+            "years_as_captain": 7,
+            "years_range": "2014–2021",
+            "has_retired": True,
+        },
+        {
+            "name": "Sourav Ganguly",
+            "trophies_won": 4,
+            "years_as_captain": 5,
+            "years_range": "2000–2005",
+            "has_retired": True,
+        },
+        {
+            "name": "Mohammad Azharuddin",
+            "trophies_won": 3,
+            "years_as_captain": 9,
+            "years_range": "1990–1999",
+            "has_retired": True,
+        },
+        {
+            "name": "Kapil Dev",
+            "trophies_won": 2,
+            "years_as_captain": 5,
+            "years_range": "1982–1987",
+            "has_retired": True,
+        },
+        {
+            "name": "Rahul Dravid",
+            "trophies_won": 2,
+            "years_as_captain": 2,
+            "years_range": "2005–2007",
+            "has_retired": True,
+        },
+        {
+            "name": "Rohit Sharma",
+            "trophies_won": 2,
+            "years_as_captain": 2,
+            "years_range": "2022–2024",
+            "has_retired": False,
+        },
+        {
+            "name": "Ajit Wadekar",
+            "trophies_won": 2,
+            "years_as_captain": 2,
+            "years_range": "1971–1974",
+            "has_retired": True,
+        },
+        {
+            "name": "Sunil Gavaskar",
+            "trophies_won": 1,
+            "years_as_captain": 5,
+            "years_range": "1976–1985",
+            "has_retired": True,
+        },
+        {
+            "name": "Anil Kumble",
+            "trophies_won": 1,
+            "years_as_captain": 1,
+            "years_range": "2007–2008",
+            "has_retired": True,
+        },
+    ]
+
+    # Search for player_name in the list of dicts using regex (case-insensitive, partial match)
+    pattern = re.compile(player_name, re.IGNORECASE)
+    leader = None
+    for d in indian_captains:
+        if pattern.search(d["name"]):
+            leader = d
+            break
+
+    if leader is not None:
+        return f"Information about the indian captian {leader['name']}: {leader['trophies_won']} trophies, between {leader['years_range']} and {'has retired' if leader['has_retired'] else 'has not retired'}"
+    else:
+        return (
+            f"There is no information avaliable for {player_name} as an Indian Captian!"
+        )
 
 
 @mcp.resource("teamstats://")
