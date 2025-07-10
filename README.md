@@ -6,6 +6,7 @@
 
 ![MCP Client Start](./media/screen_start.png)
 ![MCP Client Tools](./media/screen_tool_use.png)
+![MCP Client Tools](./media/screen_tool_captian.png)
 
 This is a sample [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server built with Python, demonstrating how to expose tools and resources to LLMs and MCP clients. It also includes a sample MCP client that integrates with Google Gemini.
 
@@ -13,6 +14,7 @@ This is a sample [Model Context Protocol (MCP)](https://modelcontextprotocol.io/
 
 - **Predict Winner Tool**: Predicts the winner between two cricket teams (mock logic).
 - **Get Player Stats Tool**: Returns mock stats for a cricket player.
+- **Get Indian Captian Information Tool**: Returns mock stats or leader stats for a cricket player, including trophies and retirement status.
 - **Match Data CSV Resource**: Exposes mock cricket match data as a CSV resource, with support for sampling rows.
 - **MCP Client**: Example client using MCP and Google Gemini (API key required).
 
@@ -67,6 +69,7 @@ This server exposes the following MCP tools and resources:
 ### Tools
 - `predict_winner(team1: str, team2: str) -> str`: Predicts the winner between two teams (mock).
 - `get_player_stats(player_name: str) -> str`: Returns mock stats for a player.
+- `get_indian_captian_information(player_name: str) -> str`: Returns stats for a cricket player an indian captian, including trophies won, years range, and retirement status. If the player does not exist, returns a not-exist message.
 
 ### Resources
 - `match_data_csv(sampling: int = None) -> str`: Returns mock match data as CSV. If `sampling` is provided, returns that many random rows (plus header).
