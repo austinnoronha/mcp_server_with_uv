@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MCP Chat Client</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <h2 class="mb-4">MCP Chat Client</h2>
+    <div id="chat-box" class="border rounded p-3 mb-3 bg-white" style="height: 400px; overflow-y: auto;"></div>
+    <div class="input-group">
+      <input id="user-input" type="text" class="form-control" placeholder="Type your message...">
+      <button id="send-btn" class="btn btn-primary">Send</button>
+    </div>
+    <div id="loader" class="text-center mb-3" style="display:none;">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    
+  </div>
+  <script>
+    function appendMessage(role, text) {
+      $('#chat-box').append(
+        `<div class="mb-2"><strong>${role}:</strong> ${text}</div>`
+      );
+      $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+    }
+    function showLoader() {
+      $('#loader').show();
+    }
+    function hideLoader() {
+      $('#loader').hide();
+    }
+    $('#send-btn').click(function() {
+      const msg = $('#user-input').val();
+      if (!msg) return;
+      appendMessage('User', msg);
+      $('#user-input').val('');
+      showLoader();
+      $.post('/chat', { message: msg }, function(data) {
+        appendMessage('Assistant', data.reply);
+        hideLoader();
+      }).fail(function() {
+        appendMessage('Assistant', 'Error: Could not reach server.');
+        hideLoader();
+      });
+    });
+    $('#user-input').keypress(function(e) {
+      if (e.which === 13) $('#send-btn').click();
+    });
+  </script>
+</body>
+</html> 
