@@ -35,7 +35,9 @@ async def get_player_stats(player_name: str) -> str:
     if runs > 1000 or wickets > 50:
         leader = "Top of the leader board!"
 
-    return f"Stats for {player_name}: {runs} runs, 50 {wickets} (mock data). {leader}"
+    return (
+        f"Stats for {player_name}: {runs} runs, {wickets} wickets (mock data). {leader}"
+    )
 
 
 @mcp.tool()
